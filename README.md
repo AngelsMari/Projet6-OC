@@ -20,9 +20,10 @@ Déplacer vous sur la carte, attraper les outils et battez vous avec les autres 
 
 ### Règle spécifique
 
-1. Vous ne pouvez avoir que 2 armes sur vous
+1. Vous ne pouvez avoir qu'une seule arme sur vous
 2. Vous ne pouvez pas passer sur une pierre
 3. Lorsque l'on arrive d'un bout à l'autre de la map, on peut la traverser pour arriver de l'autre côté
+4. Vous n'avez le droit qu'à une action, attaqué, ou défendre.
 
 ## 3. Explications des touches
 

@@ -8,7 +8,8 @@ export default class Map {
      * @param {*} maxWall 
      * @param {*} minWall 
      */
-    constructor(mapHeight, mapWidth, maxWall, minWall){
+    constructor(mapHeight, mapWidth, maxWall, minWall, game){
+        this.game = game;
 
         this.map = [];
         for (let  h = 0; h < mapHeight; h++){
@@ -78,7 +79,6 @@ export default class Map {
      * 
      */
     renderMap(){
-        //TODO : FIND A WAY TO SHOW WEAPONS WITH SPECIFIC IMAGE
         var renderMap = "";
         for (let i = 0; i < this.map.length; i++){
             renderMap += "<tr>";
@@ -86,9 +86,11 @@ export default class Map {
                 if (this.map[i][j] == 1){
                     renderMap += "<td class='wall'></td>";
                 }  else if (this.map[i][j] == 2){
-                    renderMap += "<td class='weapon'></td>";
+                    let weapons = this.game.getWeaponByPosition([i,j]);
+                    renderMap += "<td class='weapon' id='"+weapons.getName()+"'></td>";
                 }  else if (this.map[i][j] == 3){
-                    renderMap += "<td class='player'></td>";
+                    let player = this.game.getPlayerByPosition([i,j]);
+                    renderMap += "<td class='player' id='"+player.getName()+"'></td>";
                 }
                 else {
                     renderMap += "<td></td>";
@@ -103,13 +105,23 @@ export default class Map {
         return this.map;
     }
 
-    setMap(map){
-        this.map = map;
-    }
-
-    canMove(x, y){
+    cannotMove(x, y){
         if (this.map[y][x] == 1 || this.map[y][x] == 3){
             return true;
+        } else if (this.map[y][x] == 2){
+            if (!this.game.getCurrentPlayer().getWeapons()){
+                let weapon = this.game.getWeaponByPosition([y, x]);
+                this.game.getCurrentPlayer().setWeapon(weapon);
+                let name = this.game.getCurrentPlayer().getName();
+                $("#"+name+" #weaponName").text(weapon.getName());
+                $("#"+name+" #weaponDamage").text(weapon.getDamage());
+                $("#"+name+" #weaponImage").attr("src", "assets/img/weapons/"+weapon.getName()+".png");
+
+                return false;
+            }else{
+                alert("Vous avez déjà une arme !");
+                return true
+            }
         }else{
             return false;
         }
@@ -129,6 +141,8 @@ export default class Map {
         var x2 = (x-1 < 0) ? this.map[y].length-1 : x-1;
         var y1 = (y+1 > this.map.length-1) ? 0 : y+1;
         var y2 = (y-1 < 0) ? this.map.length-1 : y-1;
+
+
         if (this.map[y][x1] == 3 ){
             isPlayerAround = [y, x1];
         }else if(this.map[y][x2] == 3){
@@ -147,6 +161,12 @@ export default class Map {
         if (this.map[y1][x1] == 3){
             isPlayerAround = [y1, x1];
         }
+        // if (this.game.getCurrentPlayer()){
+        //     if (_.isEqual(isPlayerAround,this.game.getCurrentPlayer().getPosition() )){
+        //         isPlayerAround = false;
+        //     }
+        // }
+        
         return isPlayerAround;
     }
 

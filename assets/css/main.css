@@ -18,20 +18,25 @@ body{
 }
 #board td{
     width: 50px;
+    background-image: url("/assets/img/tuiles/sol.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 50px;
-    border-width: 2px;
-
+    border-width: 1px;
 }
 
 .wall{
     background-color: black;
+    background-image: url("/assets/img/tuiles/pierre.png") !important;
 }
 .weapon{
-    background-color: chartreuse;
+    background-image: inherit !important;
 }
 
 .player{
     background-color: blue;
+    background-image: inherit !important;
+
 }
 
 #info{
@@ -51,6 +56,7 @@ body{
 }
 
 .card-img{
+    object-fit: contain;
     height: 100%;
 }
 
@@ -64,4 +70,44 @@ body{
 
 .handIcons{
     height: 45px;
+}
+
+#Pioche{
+    background-image: url("/assets/img/weapons/Pioche.png") !important;
+}
+#Sceau{
+    background-image: url("/assets/img/weapons/Sceau.png") !important;
+}
+#Hache{
+    background-image: url("/assets/img/weapons/Hache.png") !important;
+}
+#Bêche{
+    background-image: url("/assets/img/weapons/Bêche.png") !important;
+}
+#Epee{
+    background-image: url("/assets/img/weapons/Epee.png") !important;
+}
+#board td#player0{
+    background-image: url("/assets/img/players/player0.png") !important;
+}
+#board td#player1{
+    background-image: url("/assets/img/players/player1.png") !important;
+}
+#board td#player2{
+    background-image: url("/assets/img/players/player2.png") !important;
+}
+#board td#player3{
+    background-image: url("/assets/img/players/player3.png") !important;
+}
+#board td#player4{
+    background-image: url("/assets/img/players/player4.png") !important;
+}
+#board td#player5{
+    background-image: url("/assets/img/players/player5.png") !important;
+}
+
+.infosWeapons{
+    font-size: 14px;
+    margin: 0;
+    margin-left: 10px;
 }

@@ -5,7 +5,18 @@ export default class Weapon{
         this.name = name;
         this.damage = damage;
         this.position = position;
-        this.durability = durability; // A voir si je garde ou chiant
+    }
+
+    getPosition(){
+        return this.position;
+    }
+
+    getDamage(){
+        return this.damage;
+    }
+
+    getName(){
+        return this.name;
     }
 
 
